@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrice di Rischio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-text">
+      <p class="eyebrow">Strumento di analisi</p>
+      <h1>Matrice di rischio a 3 livelli</h1>
+      <p class="intro">Costruisci rapidamente una matrice 3×3 con probabilità e impatto Basso, Medio e Alto. Aggiungi le voci di rischio e visualizzale nel quadrante corretto.</p>
+    </div>
+    <div class="legend">
+      <p class="legend-title">Legenda colore</p>
+      <div class="chips">
+        <span class="chip risk-low">Basso</span>
+        <span class="chip risk-medium">Medio</span>
+        <span class="chip risk-high">Alto</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Nuovo rischio</h2>
+      <form id="risk-form" class="risk-form">
+        <label class="field">
+          <span>Nome del rischio</span>
+          <input type="text" id="title" name="title" placeholder="Esempio: Ritardo nella consegna" required />
+        </label>
+        <label class="field">
+          <span>Descrizione</span>
+          <textarea id="description" name="description" rows="3" placeholder="Spiega l'origine, i trigger o le conseguenze"></textarea>
+        </label>
+        <div class="grid-2">
+          <label class="field">
+            <span>Probabilità</span>
+            <select id="probability" name="probability" required>
+              <option value="">Seleziona...</option>
+              <option value="alto">Alto</option>
+              <option value="medio">Medio</option>
+              <option value="basso">Basso</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Impatto</span>
+            <select id="impact" name="impact" required>
+              <option value="">Seleziona...</option>
+              <option value="alto">Alto</option>
+              <option value="medio">Medio</option>
+              <option value="basso">Basso</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="primary">Aggiungi alla matrice</button>
+      </form>
+    </section>
+
+    <section class="panel matrix-panel">
+      <div class="matrix-header">
+        <h2>Matrice di rischio</h2>
+        <p class="helper">Probabilità sulle righe, impatto sulle colonne.</p>
+      </div>
+      <div class="matrix" role="grid" aria-label="Matrice di rischio 3 per 3">
+        <div class="matrix-corner" aria-hidden="true"></div>
+        <div class="axis-label" aria-hidden="true">Impatto</div>
+        <div class="matrix-impact-labels" aria-hidden="true">
+          <span>Alto</span>
+          <span>Medio</span>
+          <span>Basso</span>
+        </div>
+        <div class="axis-label vertical" aria-hidden="true">Probabilità</div>
+        <div class="matrix-grid" id="matrix-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
