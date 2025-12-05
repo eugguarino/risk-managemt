@@ -191,13 +191,20 @@ p {
 
 .matrix {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  grid-template-rows: 50px 1fr;
+  grid-template-columns: 80px repeat(3, 1fr);
+  grid-template-rows: 40px 40px repeat(3, 160px);
+  grid-template-areas:
+    "corner impact impact impact"
+    ". labels labels labels"
+    "prob matrix matrix matrix"
+    "prob matrix matrix matrix"
+    "prob matrix matrix matrix";
   gap: 10px;
   align-items: stretch;
 }
 
 .matrix-corner {
+  grid-area: corner;
   width: 100%;
   height: 100%;
 }
@@ -206,14 +213,23 @@ p {
   font-weight: 700;
   align-self: center;
   justify-self: center;
+  text-align: center;
+}
+
+.axis-label:not(.vertical) {
+  grid-area: impact;
 }
 
 .axis-label.vertical {
+  grid-area: prob;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+  align-self: center;
+  justify-self: center;
 }
 
 .matrix-impact-labels {
+  grid-area: labels;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
@@ -223,6 +239,7 @@ p {
 }
 
 .matrix-grid {
+  grid-area: matrix;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 160px);
